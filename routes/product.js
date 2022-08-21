@@ -8,7 +8,7 @@ productRouter.get("/api/products", auth, async (req, res, next) => {
   try {
     console.log(req.query.category);
     const products = await Product.find({ category: req.query.category });
-    return res.json(products._doc);
+    return res.json(products);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -23,7 +23,7 @@ productRouter.get("/api/search/:query", auth, async (req, res, next) => {
         $options: "i",
       },
     });
-    return res.json(products._doc);
+    return res.json(products);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
